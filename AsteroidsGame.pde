@@ -59,5 +59,3 @@ class Floater {
     myColor = 255;
     }
   }
-  class Stars extends Floater {
-  }
