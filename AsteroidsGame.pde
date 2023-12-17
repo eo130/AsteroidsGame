@@ -1,4 +1,3 @@
-//your variable declarations here
 Spaceship Bob = new Spaceship();
 Star[] aurora = new Star[150];
 public void setup() 
