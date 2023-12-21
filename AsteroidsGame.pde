@@ -1,5 +1,8 @@
+//your variable declarations here
+//Asteroid [] Sue = new Asteroid[3];
 Spaceship Bob = new Spaceship();
 Star[] aurora = new Star[150];
+ArrayList <Asteroid> flying = new ArrayList <Asteroid>();
 public void setup() 
 {
   //your code here
@@ -7,6 +10,14 @@ public void setup()
   for(int i = 0; i < aurora.length; i++){
     aurora[i] = new Star();
   }
+ // for(int i = 0; i < Sue.length; i++){
+   // Sue[i] = new Asteroid();
+  //}
+  for(int m = 0; m < 20; m++){
+    flying.add(new Asteroid());
+    flying.get(m).accelerate((int)(Math.random()*15)+1);
+  }
+  //flying.setY((int)(Math.random()*250));
 }
 public void draw() 
 {
@@ -17,6 +28,17 @@ public void draw()
   }
   Bob.move();
   Bob.show();
+  //for(int i = 0; i< 5; i++){
+ // Sue[i].show();
+  //}
+  for(int m = 0; m < flying.size(); m++){
+    flying.get(m).show();
+    flying.get(m).move();
+    float d = dist(Bob.getX(), Bob.getY() , flying.get(m).getX(), flying.get(m).getY());
+    //getY doesn't exist????
+    if(d < 10)
+    flying.remove(m);
+  }
 }
 public void keyPressed(){
   if(key == 'a')
