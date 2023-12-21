@@ -1,8 +1,8 @@
 //your variable declarations here
-//Asteroid [] Sue = new Asteroid[3];
 Spaceship Bob = new Spaceship();
 Star[] aurora = new Star[150];
 ArrayList <Asteroid> flying = new ArrayList <Asteroid>();
+ArrayList <Bullet> wow = new ArrayList <Bullet>();
 public void setup() 
 {
   //your code here
@@ -10,14 +10,10 @@ public void setup()
   for(int i = 0; i < aurora.length; i++){
     aurora[i] = new Star();
   }
- // for(int i = 0; i < Sue.length; i++){
-   // Sue[i] = new Asteroid();
-  //}
   for(int m = 0; m < 20; m++){
     flying.add(new Asteroid());
     flying.get(m).accelerate((int)(Math.random()*15)+1);
   }
-  //flying.setY((int)(Math.random()*250));
 }
 public void draw() 
 {
@@ -31,6 +27,7 @@ public void draw()
   //for(int i = 0; i< 5; i++){
  // Sue[i].show();
   //}
+  //asteroid below
   for(int m = 0; m < flying.size(); m++){
     flying.get(m).show();
     flying.get(m).move();
@@ -38,6 +35,22 @@ public void draw()
     //getY doesn't exist????
     if(d < 10)
     flying.remove(m);
+  }
+  //bullets
+  for(int m = 0; m<wow.size(); m++){
+    wow.get(m).move();
+    wow.get(m).show();
+  }
+  for(int n = 0; n < wow.size(); n++){
+    for(int a = 0; a < flying.size(); a++){
+      //float p = dist(wow.get(n).getX(), wow.get(n).getY(),
+      float p = dist(wow.get(n).getX(), wow.get(n).getY(), flying.get(a).getX(), flying.get(a).getY());
+      if( p < 20){
+        flying.remove(a);
+        wow.remove(n);
+        break;
+      }
+    }
   }
 }
 public void keyPressed(){
@@ -54,4 +67,6 @@ public void keyPressed(){
   Bob.setYspeed(0);
   Bob.hyperspace();
 }
+  if(key == ' ')
+  wow.add(new Bullet(Bob));
 }
