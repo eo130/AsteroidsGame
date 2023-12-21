@@ -35,7 +35,4 @@ class Bullet extends Floater{
  public void setYspeed(double y){
   myYspeed = y;
 }
-public void setmyPointDirection(int q){
-  myPointDirection = q;
-}
 }
